@@ -1,0 +1,156 @@
+/**
+ * https://cdn.dribbble.com/users/2051158/screenshots/5690157/mail_2x.png
+ */
+
+@import "./_includes/reset", "./_includes/colors", "./_includes/mixins",
+    "./_includes/fonts", "./_includes/variables";
+
+body {
+    @include Font($MerriweatherSans);
+
+    .app {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        overflow: hidden;
+        @include Flex(row);
+        background: $White;
+
+        .sidebar {
+            width: 70px;
+            height: 100%;
+            background: $White;
+            border-right: 1px solid $AthensGray;
+            @include Flex(column);
+            justify-content: flex-start;
+
+            .logo {
+                width: 100%;
+                text-align: center;
+                margin: 20px 0 0 0;
+
+                a,a:visited {
+                    padding: 5px 11px;
+                    border: 2px solid $AzureRadiance;
+                    color: $AzureRadiance;
+                    @include BorderRadius(4px, all);
+                }
+            }
+
+            ul {
+                @include Flex(column);
+                align-content: center;
+                align-items: center;
+                justify-content: flex-start;
+                list-style-type: none;
+                margin: 20px 0;
+
+                li {
+                    width: 100%;
+                    @include Flex(column);
+                    justify-content: center;
+                    align-content: center;
+                    align-items: center;
+
+                    a,
+                    a:visited {
+                        display: block;
+                        width: 100%;
+                        text-align: center;
+                        padding: 15px 0;
+                        color: rgba($OuterSpace, 0.3);
+                        text-decoration: none;
+                        font-size: $defaultFontSize + 5px;
+                        @include Transition(color, 0.4s, ease-in-out);
+
+                        &:hover {
+                            color: rgba($AzureRadiance, 1);
+                        }
+                    }
+                }
+            }
+        }
+
+        .notes-bar {
+            width: 250px;
+            height: 100%;
+            background: $AthensGray;
+
+            .subject-handler {
+                background: $AzureRadiance;
+                @include Flex(row);
+
+                a,
+                a:visited {
+                    width: 100%;
+                    color: $White;
+                    text-decoration: none;
+                    font-size: $defaultFontSize - 2;
+                    font-weight: 400;
+                    letter-spacing: 0.1px;
+                    padding: 15px 10px;
+                    display: block;
+
+                    i[class^="fa"] {
+                        margin-right: 5px;
+                    }
+                }
+            }
+
+            .subject {
+                &-title {
+                    letter-spacing: 0.2px;
+                    text-transform: capitalize;
+                    font-size: $defaultFontSize - 3;
+                    font-weight: 400;
+                    font-style: normal;
+                    padding: 10px;
+                    @include Flex(row);
+                    align-content: center;
+                    align-items: center;
+                    @include Font($MerriweatherSans);
+                    background: rgba($OuterSpace, 0.1);
+                    cursor: pointer;
+
+                    i[class^="fa"] {
+                        margin: -2px 7px 0 0;
+                        font-size: $defaultFontSize - 3;
+                    }
+                }
+
+                &-notes {
+                    width: 100%;
+                    list-style-type: none;
+                    @include Flex(column);
+
+                    li {
+                        padding: 10px 30px;
+                        cursor: pointer;
+                        @include Font($MerriweatherSans);
+                        font-size: $defaultFontSize - 3;
+                        letter-spacing: 0.2px;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        display: block;
+                        @include Transition(all, 0.3s, ease-in-out);
+
+                        i[class^="fa"] {
+                            margin-right: 7px;
+                        }
+
+                        &:hover {
+                            background: $AzureRadiance;
+                            color: $White;
+                        }
+                    }
+                }
+            }
+        }
+
+        .note {
+            flex: 1;
+            overflow: auto;
+        }
+    }
+}

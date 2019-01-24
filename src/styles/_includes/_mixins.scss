@@ -1,0 +1,50 @@
+@mixin Flex($flexDir) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: $flexDir;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: $flexDir;
+}
+
+@mixin Transition($type, $delay, $transition) {
+    -webkit-transition: $type $delay $transition;
+    transition: $type $delay $transition;
+}
+
+@mixin Smoothing {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: "pnum";
+    font-feature-settings: "pnum";
+    font-variant-numeric: proportional-nums;
+    -webkit-text-stroke: 0.45px rgba(0, 0, 0, 0.1);
+    // text-shadow: #fff 0px 1px 1px;
+}
+
+@mixin Font($fontFamily) {
+    font-family: $fontFamily;
+    @include Smoothing;
+}
+
+@mixin BorderRadius($radii, $whichSides: all) {
+    @if $whichSides == "all" {
+        border-radius: $radii;
+    } @else if $whichSides == "left" {
+        border-top-left-radius: $radii;
+        border-bottom-left-radius: $radii;
+    } @else if $whichSides == "right" {
+        border-top-right-radius: $radii;
+        border-bottom-right-radius: $radii;
+    } @else if $whichSides == "top" {
+        border-top-left-radius: $radii;
+        border-top-right-radius: $radii;
+    }
+}
+
+@mixin Box-Shadow($content...) {
+    -webkit-box-shadow: $content;
+    box-shadow: $content;
+}
