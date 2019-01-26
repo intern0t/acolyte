@@ -3,14 +3,17 @@ import "./styles/acolyte.min.css";
 import Sidebar from "./components/Sidebar";
 import Notes from "./components/Notes";
 import Note from "./components/Note";
+import { NotesProvider } from "./contexts/NotesContext";
 
 class App extends Component {
     render() {
         return (
             <div className="app">
-                <Sidebar />
-                <Notes />
-                <Note />
+                <NotesProvider>
+                    <Sidebar />
+                    <Notes />
+                    <Note />
+                </NotesProvider>
             </div>
         );
     }

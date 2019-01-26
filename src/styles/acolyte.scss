@@ -3,7 +3,8 @@
  */
 
 @import "./_includes/reset", "./_includes/colors", "./_includes/mixins",
-    "./_includes/fonts", "./_includes/variables";
+    "./_includes/fonts", "./_includes/variables",
+    "../../node_modules/codemirror/lib/codemirror.css", "./_includes/_gfm.css";
 
 body {
     @include Font($MerriweatherSans);
@@ -29,7 +30,8 @@ body {
                 text-align: center;
                 margin: 20px 0 0 0;
 
-                a,a:visited {
+                a,
+                a:visited {
                     padding: 5px 11px;
                     border: 2px solid $AzureRadiance;
                     color: $AzureRadiance;
@@ -77,7 +79,6 @@ body {
             background: $AthensGray;
 
             .subject-handler {
-                background: $AzureRadiance;
                 @include Flex(row);
 
                 a,
@@ -90,9 +91,25 @@ body {
                     letter-spacing: 0.1px;
                     padding: 15px 10px;
                     display: block;
+                    background: $AzureRadiance;
+                    border: 0;
+                    @include Transition(background, 0.3s, ease-in-out);
+
+                    &:nth-child(2) {
+                        background: $ElectricViolet;
+                        color: $White;
+
+                        &:hover {
+                            background: rgba($ElectricViolet, 0.8);
+                        }
+                    }
 
                     i[class^="fa"] {
                         margin-right: 5px;
+                    }
+
+                    &:hover {
+                        background: rgba($AzureRadiance, 0.8);
                     }
                 }
             }
@@ -150,7 +167,30 @@ body {
 
         .note {
             flex: 1;
-            overflow: auto;
+            overflow: hidden;
+            @include Flex(column);
+
+            &-wrapper {
+                flex: 1;
+                overflow: hidden;
+                @include Flex(row);
+
+                &-rendered,
+                &-raw {
+                    flex: 1;
+                    overflow: auto;
+                    padding: 20px;
+
+                    .CodeMirror {
+                        height: 100%;
+                    }
+                }
+
+                &-raw {
+                    margin: 0;
+                    padding: 0;
+                }
+            }
         }
     }
 }
