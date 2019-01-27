@@ -3,8 +3,8 @@
  */
 
 @import "./_includes/reset", "./_includes/colors", "./_includes/mixins",
-    "./_includes/fonts", "./_includes/variables",
-    "../../node_modules/codemirror/lib/codemirror.css", "./_includes/_gfm.css";
+    "./_includes/fonts", "./_includes/variables", "./_includes/_gfm.css",
+    "./_includes/hljs";
 
 body {
     @include Font($MerriweatherSans);
@@ -181,7 +181,7 @@ body {
                     overflow: auto;
                     padding: 20px;
 
-                    .CodeMirror {
+                    .markdown-body {
                         height: 100%;
                     }
                 }
@@ -189,6 +189,29 @@ body {
                 &-raw {
                     margin: 0;
                     padding: 0;
+
+                    .ace_editor {
+                        &:hover {
+                            .ace_scrollbar {
+                                display: block;
+                                opacity: 1;
+                            }
+                        }
+                    }
+                    .ace_scrollbar {
+                        display: none;
+                        @include Transition(opacity, .3s, ease-in-out);
+
+                        &-v {
+                            overflow-y: auto;
+                            @include Transition(opacity, .3s, ease-in-out);
+                        }
+
+                        &-h {
+                            overflow-x: auto;
+                            @include Transition(opacity, .3s, ease-in-out);
+                        }
+                    }
                 }
             }
         }
